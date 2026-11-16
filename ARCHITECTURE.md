@@ -145,7 +145,7 @@ graph TD
 | Projets | slug, titre, annee | slug |
 | Expériences | slug, poste, entreprise | slug ou id |
 | Formations | slug, diplome, ecole | slug ou id |
-| Compétences | nom, categorie | id |
+| Compétences | slug, nom, categorie | id |
 
 | Relation | De → Vers | Propriétés | Pourquoi ce sens |
 |---|---|---|---|
