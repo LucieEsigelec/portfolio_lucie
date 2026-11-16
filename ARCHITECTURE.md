@@ -18,7 +18,7 @@ L'image reste modifiable : rouvrez-la dans Excalidraw (ou dans VS Code avec l'ex
 ```mermaid
 flowchart LR
     F["Frontends (1 par membre)"] -->|HTTP JSON| API["FastAPI - backend d'équipe"]
-    API -->|"candidats, projets, compétences"| M[("MongoDB")]
+    API -->|"personne, projets, compétences"| M[("MongoDB")]
     API -->|"graphe de compétences, similarités projets"| N[("Neo4j")]
     %% TODO : complétez / corrigez ce schéma selon VOS choix
 ```
@@ -33,9 +33,9 @@ Voici un texte prêt à être copié-collé pour remplir votre **TODO** dans vot
 
 | # | Besoin (vu par un recruteur) | Route API | Base(s) interrogée(s) |
 |---|---|---|---|
-| R1 | Profil + timeline (expériences, formations) d'un candidat | `GET /api/candidats/{slug}` | MongoDB |
-| R2 | Projets d'un candidat, filtrables par compétence | `GET /api/candidats/{slug}/projets` | MongoDB |
-| R3 | Statistiques d'un candidat par compétence | `GET /api/candidats/{slug}/stats` | MongoDB |
+| R1 | Profil + timeline (expériences, formations) d'un candidat | `GET /api/personne/{slug}` | MongoDB |
+| R2 | Projets d'un candidat, filtrables par compétence | `GET /api/personne/{slug}/projets` | MongoDB |
+| R3 | Statistiques d'un candidat par compétence | `GET /api/personne/{slug}/stats` | MongoDB |
 | R4 | Projets similaires à un projet | `GET /api/graph/projets/{slug}/similaires` | Neo4j |
 | R5 | Graphe de compétences d'un candidat | `GET /api/graph/competences/{slug}` | Neo4j |
 | R6 | Détail complet d'un projet (architecture, médias, métriques) |  | MongoDB |
@@ -44,7 +44,7 @@ Voici un texte prêt à être copié-collé pour remplir votre **TODO** dans vot
 
 ## 3. Modèle MongoDB
 
-### 3.1 Collection `candidats` - pattern TODO (*Embedding* ? *Referencing* ?)
+### 3.1 Collection `personne` - pattern TODO (*Embedding* ? *Referencing* ?)
 
 ```json
 TODO : un document d'exemple complet
@@ -105,7 +105,7 @@ TODO : un document d'exemple complet
 
 ---
 
-**candidats :** Choix du pattern d'***Embedding*** (imbrication). Les listes `formations` et `experiences` possèdent une **cardinalité bornée** (un candidat a un nombre fini et gérable d'expériences). Cela permet de récupérer l'intégralité du profil et de sa timeline en **une seule requête** (optimisant la route `GET /api/candidats/{slug}`), sachant que la fréquence de mise à jour de ces données est très faible.
+**personne :** Choix du pattern d'***Embedding*** (imbrication). Les listes `formations` et `experiences` possèdent une **cardinalité bornée** (un candidat a un nombre fini et gérable d'expériences). Cela permet de récupérer l'intégralité du profil et de sa timeline en **une seule requête** (optimisant la route `GET /api/personne/{slug}`), sachant que la fréquence de mise à jour de ces données est très faible.
 
 ---
 
@@ -147,7 +147,7 @@ graph TD
 | Projets | slug, titre, annee | slug |
 | Expériences | slug, poste, entreprise | slug ou id |
 | Formations | slug, diplome, ecole | slug ou id |
-| Compétences | nom, categorie | id |
+| Compétences | slug, nom, categorie | id |
 
 | Relation | De → Vers | Propriétés | Pourquoi ce sens |
 |---|---|---|---|
@@ -181,7 +181,7 @@ TODO : CREATE CONSTRAINT ... IF NOT EXISTS
 
 | Entité | Slug | Dans MongoDB | Dans Neo4j |
 |---|---|---|---|
-| Candidat | Aucun | Document unique dans la collection candidats (récupéré via _id ou en tant que profil principal du portfolio).| Non modélisé dans le graphe (le graphe est centré sur les liens entre Projets, Expériences, Formations et Compétences). |
+| Candidat | Aucun | Document unique dans la collection personne (récupéré via _id ou en tant que profil principal du portfolio).| Non modélisé dans le graphe (le graphe est centré sur les liens entre Projets, Expériences, Formations et Compétences). |
 | Projet | `projet_slug` (ex. `smartcity-explorer`) | Champ slug unique dans la collection projets. | Propriété slug du noeud (:Projet). |
 | Compétence | `skill_slug` (ex. `mongodb`) | Champ slug unique dans la collection compétences. | Propriété slug du nœud (:Skill / :Competence). |
 
