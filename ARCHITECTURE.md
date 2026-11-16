@@ -26,8 +26,8 @@ flowchart LR
 TODO : en 3 à 5 lignes, le rôle de chaque base dans votre portfolio.
 Voici un texte prêt à être copié-collé pour remplir votre **TODO** dans votre rapport :
 
-> **MongoDB :** Elle stocke l'ensemble des données riches, textuelles et administratives du portfolio (profil personnel, formations, expériences et fiches projets au format Markdown). Grâce à une stratégie combinant embedding et referencing par *slug*, elle garantit un accès direct et rapide en lecture pour restituer les contenus éditoriaux et les métadonnées.
-> **Neo4j :** Elle gère le graphe de connaissances centré sur les relations structurelles entre les projets et les compétences (*skills*). Elle prend en charge la logique métier avancée, telle que la recommandation de projets similaires par traversée de graphe et l'analyse de la centralité des technologies.
+**MongoDB :** Elle stocke l'ensemble des données riches, textuelles et administratives du portfolio (profil personnel, formations, expériences et fiches projets au format Markdown). Grâce à une stratégie combinant embedding et referencing par *slug*, elle garantit un accès direct et rapide en lecture pour restituer les contenus éditoriaux et les métadonnées.
+**Neo4j :** Elle gère le graphe de connaissances centré sur les relations structurelles entre les projets et les compétences (*skills*). Elle prend en charge la logique métier avancée, telle que la recommandation de projets similaires par traversée de graphe et l'analyse de la centralité des technologies.
 
 ## 2. Les requêtes à servir
 
@@ -60,7 +60,7 @@ TODO : un document d'exemple complet
 ```
 
 
-**Justification** (cardinalité bornée ou non, lecture en une requête, fréquence de mise à jour) : TODO
+
 
 ### 3.2 Collection `projets` - pattern TODO
 
@@ -98,8 +98,20 @@ TODO : un document d'exemple complet
  
 ```
 
+**justifications** : 
 
-**Justification** : TODO
+
+---
+
+**candidats :** Choix du pattern d'***Embedding*** (imbrication). Les listes `formations` et `experiences` possèdent une **cardinalité bornée** (un candidat a un nombre fini et gérable d'expériences). Cela permet de récupérer l'intégralité du profil et de sa timeline en **une seule requête** (optimisant la route `GET /api/candidats/{slug}`), sachant que la fréquence de mise à jour de ces données est très faible.
+
+---
+
+**Projets :** Choix d'un pattern ***Hybride***. Le contenu lourd et textuel (`contenu_md`, métriques) est stocké directement dans le document pour un affichage rapide, tandis que les compétences sont reliées via leurs identifiants (`skills_slugs`). Cela permet de maintenir la liaison applicative avec le graphe Neo4j tout en évitant les jointures complexes en base.
+
+---
+
+**Compétences :** Choix du pattern de ***Referencing*** (Référentiel partagé). Les compétences sont des entités transverses utilisées par de multiples projets et expériences. Centraliser leurs informations dans une collection dédiée évite la duplication des données, tandis que le slug fait office de référence unique partagée à la fois dans MongoDB et dans le graphe Neo4j
 
 ### 3.4 Index
 
@@ -167,11 +179,15 @@ TODO : CREATE CONSTRAINT ... IF NOT EXISTS
 
 | Entité | Slug | Dans MongoDB | Dans Neo4j |
 |---|---|---|---|
-| Candidat | `candidat_slug` (ex. `alice-martin`) | TODO | TODO |
-| Projet | `projet_slug` (ex. `smartcity-explorer`) | TODO | TODO |
-| Compétence | `skill_slug` (ex. `mongodb`) | TODO | TODO |
+| Candidat | Aucun | Document unique dans la collection candidats (récupéré via _id ou en tant que profil principal du portfolio).| Non modélisé dans le graphe (le graphe est centré sur les liens entre Projets, Expériences, Formations et Compétences). |
+| Projet | `projet_slug` (ex. `smartcity-explorer`) | Champ slug unique dans la collection projets. | Propriété slug du noeud (:Projet). |
+| Compétence | `skill_slug` (ex. `mongodb`) | Champ slug unique dans la collection compétences. | Propriété slug du nœud (:Skill / :Competence). |
 
 **Suppression d'un projet** : que faites-vous dans chaque base ? TODO
+
+L'API FastAPI applique une stratégie de **suppression en cascade applicative** pour garantir la cohérence entre les deux bases :
+- **Dans MongoDB :** Suppression du document dans la collection `projets` en ciblant son `slug`.
+- **Dans Neo4j :** Exécution d'une requête Cypher avec l'instruction `DETACH DELETE` sur le nœud `(:Projet {slug: ...})`. Le mot-clé `DETACH` supprime automatiquement toutes les relations associées (liens `UTILISE` vers les compétences, `DANS_CADRE_DE`, et `SIMILAIRE` vers d'autres projets) pour éviter les nœuds orphelins dans le graphe.
 
 ## 6. Répartition du travail
 
