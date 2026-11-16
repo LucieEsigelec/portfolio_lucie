@@ -9,6 +9,7 @@ dependencies = [
     "pydantic>=2.5",
     "pydantic-settings>=2.1",
     # MongoDB : PyMongo Async (successeur officiel de Motor, déprécié depuis 2025).
+    "motor>=3.0.0",
     # L'API est quasi identique à Motor : AsyncMongoClient(...)[db][collection], await find_one(...), etc.
     "pymongo>=4.13",
     "neo4j>=5.15",
