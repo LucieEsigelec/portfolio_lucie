@@ -18,8 +18,8 @@ L'image reste modifiable : rouvrez-la dans Excalidraw (ou dans VS Code avec l'ex
 ```mermaid
 flowchart LR
     F["Frontends (1 par membre)"] -->|HTTP JSON| API["FastAPI - backend d'équipe"]
-    API -->|"candidats, projets"| M[("MongoDB")]
-    API -->|"graphe de compétences"| N[("Neo4j")]
+    API -->|"candidats, projets, compétences"| M[("MongoDB")]
+    API -->|"graphe de compétences, similarités projets"| N[("Neo4j")]
     %% TODO : complétez / corrigez ce schéma selon VOS choix
 ```
 
@@ -29,11 +29,11 @@ TODO : en 3 à 5 lignes, le rôle de chaque base dans votre portfolio.
 
 | # | Besoin (vu par un recruteur) | Route API | Base(s) interrogée(s) |
 |---|---|---|---|
-| R1 | Profil + timeline (expériences, formations) d'un candidat | `GET /api/candidats/{slug}` | TODO |
-| R2 | Projets d'un candidat, filtrables par compétence | `GET /api/candidats/{slug}/projets` | TODO |
-| R3 | Statistiques d'un candidat par compétence | `GET /api/candidats/{slug}/stats` | TODO |
-| R4 | Projets similaires à un projet | `GET /api/graph/projets/{slug}/similaires` | TODO |
-| R5 | Graphe de compétences d'un candidat | `GET /api/graph/competences/{slug}` | TODO |
+| R1 | Profil + timeline (expériences, formations) d'un candidat | `GET /api/candidats/{slug}` | MongoDB |
+| R2 | Projets d'un candidat, filtrables par compétence | `GET /api/candidats/{slug}/projets` | MongoDB |
+| R3 | Statistiques d'un candidat par compétence | `GET /api/candidats/{slug}/stats` | MongoDBcompétences |
+| R4 | Projets similaires à un projet | `GET /api/graph/projets/{slug}/similaires` | Neo4j |
+| R5 | Graphe de compétences d'un candidat | `GET /api/graph/competences/{slug}` | Neo4j |
 | TODO | Vos requêtes supplémentaires | TODO | TODO |
 
 ## 3. Modèle MongoDB
@@ -42,7 +42,20 @@ TODO : en 3 à 5 lignes, le rôle de chaque base dans votre portfolio.
 
 ```json
 TODO : un document d'exemple complet
+
+{
+        ObjectId _id PK
+        string type "main_profile"
+        string prenom
+        string nom
+        string titre
+        string bio
+        object contact "email, github, linkedin..."
+        array formations "école, diplôme, années..."
+        array experiences "entreprise, poste, missions..."
+    }
 ```
+
 
 **Justification** (cardinalité bornée ou non, lecture en une requête, fréquence de mise à jour) : TODO
 
@@ -50,7 +63,36 @@ TODO : un document d'exemple complet
 
 ```json
 TODO : un document d'exemple complet
+
+{
+        ObjectId _id PK
+        string slug UK "Clé pivot unique"
+        string titre
+        string resume
+        string contenu_md "Format Markdown complet"
+        object liens "github, demo"
+        object metriques "performances, stats"
+        array skills_slugs "['python', 'mongodb', ...]"
+        string date_realisation
+   
 ```
+
+### 3.3 Collection `compétences` - pattern 
+
+```json
+
+{
+        ObjectId _id PK
+        string slug UK "Clé pivot unique"
+        string nom
+        string categorie "Langage, BDD, DevOps..."
+        string niveau_maitrise
+        string icone_url
+        int ordre_affichage
+    }
+ 
+```
+
 
 **Justification** : TODO
 
