@@ -46,5 +46,5 @@ async def close_mongo() -> None:
     """Ferme la connexion (appelé à l'arrêt de l'API)."""
     global _client
     if _client is not None:
-        _client.close()
+        await _client.close()
         _client = None

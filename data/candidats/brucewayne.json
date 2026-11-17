@@ -1,0 +1,21 @@
+{
+  "slug": "bruce-wayne",
+  "prenom": "Bruce",
+  "nom": "Wayne",
+  "titre": "Ingénieur généraliste",
+  "bio": "Motivé, recherche de nouveaux défis techniques.",
+  "contacts": {
+    "email": "bruce@wayne.com",
+    "github": "https://github.com/bwayne"
+  },
+  "formations": [],
+  "experiences": [],
+  "competences": [
+    {
+      "nom": "Python",
+      "categorie": "Langages",
+      "niveau": "Avancé",
+      "mots_cles": ["FastAPI", "Pydantic"]
+    }
+  ]
+}

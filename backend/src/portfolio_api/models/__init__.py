@@ -4,7 +4,7 @@ TODO (équipe) : définir CandidatOut, ExperienceOut, FormationOut, ProjetOut, S
 """
 
 from __future__ import annotations
-
+from typing import Literal
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -21,8 +21,8 @@ class Personne(BaseModel):
     bio: str = Field(..., examples=["Motivé recherche..."])
     contacts: dict = {}
     formations: list[Formation] = []
-    experiences: list[Experience] = {}
-    competences: list[Competence] = {}
+    experiences: list[Experience] = []
+    competences: list[Competence] = []
    
 
 
@@ -53,4 +53,9 @@ class Contact(BaseModel):
     
 
 
-# ── Contact ───────────────────────────────────────────────────────
+# ── Competance ───────────────────────────────────────────────────────
+class Competence(BaseModel):
+    nom: str = Field(..., examples=["Python"])
+    categorie: str = Field(..., examples=["Langages", "Data / IA", "DevOps", "Bases de données"])
+    niveau: Literal["Débutant", "Intermédiaire", "Avancé", "Expert"] = "Intermédiaire"
+    mots_cles: list[str] = []
