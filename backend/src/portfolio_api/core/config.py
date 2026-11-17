@@ -13,14 +13,12 @@ class Settings(BaseSettings):
     app_name: str = "Portfolio Polyglotte API"
     debug: bool = False
 
-    mongo_url: str
-    mongo_db: str 
-
-    neo4j_uri: str 
-    neo4j_user: str 
-    neo4j_password: str
-
-    cors_origins: str 
+    mongo_url: str = "mongodb://localhost:27017"
+    mongo_db: str = "portfolio"
+    neo4j_uri: str = "bolt://localhost:7687"
+    neo4j_user: str = "neo4j"
+    neo4j_password: str = "password"
+    cors_origins: str = "http://localhost:3000,http://localhost:5173"
 
     @property
     def cors_origin_list(self) -> list[str]:
