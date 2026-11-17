@@ -3,6 +3,9 @@ from pymongo import AsyncMongoClient
 from neo4j import AsyncGraphDatabase
 from portfolio_api.core.config import get_settings
 
+""" cd backend puis uv run python src/portfolio_api/s
+cripts/check_connexion.py"""
+
 
 async def main():
     settings = get_settings()
