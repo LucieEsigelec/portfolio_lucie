@@ -48,4 +48,3 @@ async def close_mongo() -> None:
     if _client is not None:
         _client.close()
         _client = None
-    return None
