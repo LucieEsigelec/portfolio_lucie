@@ -4,7 +4,7 @@ Vérifier que le driver Neo4j est créé correctement
 à partir de la configuration (sans ouvrir de vraie connexion).
 
 Commande :
-    uv run pytest tests/test_db_neo4j.py -v
+    uv run pytest tests/unit/test_db_neo4j.py -v
 
 Fichier à implémenter :
     packages/portfolio_api/src/portfolio_api/db/neo4j.py
