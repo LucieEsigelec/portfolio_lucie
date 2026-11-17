@@ -1,3 +1,6 @@
+set shell := ["powershell.exe", "-Command"]
+
+
 set dotenv-load := true
 
 # Lister les commandes
@@ -19,16 +22,16 @@ reset:
 
 # Installer les dépendances du backend
 install:
-    cd backend && uv sync
+    cd backend ; uv sync
 
 # Lancer l'API (http://localhost:8000/docs)
 dev:
-    cd backend && uv run uvicorn portfolio_api.main:app --reload --port 8000
+    cd backend ; uv run uvicorn portfolio_api.main:app --reload --port 8000
 
 # Peupler MongoDB et Neo4j depuis data/
 seed:
-    cd backend && uv run python -m portfolio_api.scripts.seed
+    cd backend ; uv run python -m portfolio_api.scripts.seed
 
 # Tests du backend
 test:
-    cd backend && uv run pytest -q
+    cd backend ; uv run pytest -q
