@@ -51,7 +51,7 @@ class TestGetMongoDb:
         with (
             patch("portfolio_api.db.mongo.get_settings", return_value=mock_settings),
             patch(
-                "portfolio_api.db.mongo.AsyncIOMotorClient",
+                "portfolio_api.db.mongo.AsyncMongoClient",
                 return_value=mock_client,
             ) as client_mock,
         ):
@@ -71,7 +71,7 @@ class TestGetMongoDb:
 
         with (
             patch("portfolio_api.db.mongo.get_settings") as settings_mock,
-            patch("portfolio_api.db.mongo.AsyncIOMotorClient", return_value=mock_client),
+            patch("portfolio_api.db.mongo.AsyncMongoClient", return_value=mock_client),
         ):
             def get_settings_side_effect():
                 s = MagicMock()
