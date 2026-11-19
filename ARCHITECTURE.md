@@ -34,13 +34,15 @@ Voici un texte prêt à être copié-collé pour remplir votre **TODO** dans vot
 | # | Besoin (vu par un recruteur) | Route API | Base(s) interrogée(s) |
 |---|---|---|---|
 | R1 | Profil + timeline (expériences, formations) d'un candidat | `GET /api/personne/{slug}` | MongoDB |
-| R2 | Projets d'un candidat, filtrables par compétence | `GET /api/personne/{slug}/projets` | MongoDB |
+| R2 | Projets du portfolio, filtrables par compétence | `GET /api/projets?competence=...` | MongoDB |
 | R3 | Statistiques d'un candidat par compétence | `GET /api/personne/{slug}/stats` | MongoDB |
 | R4 | Projets similaires à un projet | `GET /api/graph/projets/{slug}/similaires` | Neo4j |
 | R5 | Graphe de compétences d'un candidat | `GET /api/graph/competences/{slug}` | Neo4j |
-| R6 | Détail complet d'un projet (architecture, médias, métriques) |  | MongoDB |
+| R6 | Détail complet d'un projet (architecture, médias, métriques) | `GET /api/projets/{slug}` | MongoDB |
 | R7 | Preuves d'une compétence (projets et expériences où elle a été appliquée) |  | Neo4j (MongoDB)|
 | R8 | Liste des diplômes et certifications d'un candidat |  | MongoDB |
+
+> Le slug d'un projet est récupéré depuis la liste des projets, le visiteur n'a pas à le connaître.
 
 ## 3. Modèle MongoDB
 
