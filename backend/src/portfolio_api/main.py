@@ -40,7 +40,9 @@ app.add_middleware(
 async def health() -> HealthResponse:
     return HealthResponse()
 
+from portfolio_api.api.personne import router as personne_router
 
+app.include_router(personne_router)
 # TODO (équipe) : enregistrer vos routeurs
 # from portfolio_api.api.routes_candidats import router as candidats_router
 # app.include_router(candidats_router, prefix="/api")
