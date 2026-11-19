@@ -1,5 +1,6 @@
+import asyncio
 from fastapi import HTTPException
-from portfolio_api.models import Personne, Competence
+from portfolio_api.models import Competence, Personne
 from portfolio_api.repositories.personne_repo import PersonneRepository
 
 
@@ -9,20 +10,27 @@ class PersonneService:
 
     async def list_personnes(self) -> list[Personne]:
         docs = await self.repo.get_all_mongo()
-        # Chaque dictionnaire Mongo est validé et typé par Pydantic
         return [Personne(**doc) for doc in docs]
 
     async def get_personne_detail(self, slug: str) -> dict:
-        doc = await self.repo.get_by_slug_mongo(slug)
+        # Exécution parallèle sur MongoDB et Neo4j
+        doc, raw_skills = await asyncio.gather(
+            self.repo.get_by_slug_mongo(slug),
+            self.repo.get_skills_from_graph(slug),
+        )
+
         if not doc:
             raise HTTPException(status_code=404, detail=f"Personne '{slug}' introuvable")
 
-        # 1. Validation du profil MongoDB avec ton modèle Pydantic
         personne = Personne(**doc)
-
-        # 2. Enrichissement depuis Neo4j (compétences extraites de ses expériences/formations)
-        raw_skills = await self.repo.get_skills_from_graph(slug)
-        competences_graphe = [Competence(**s) for s in raw_skills]
+        competences_graphe = [
+            Competence(
+                slug=s["slug"],
+                nom=s["nom"],
+                categorie=s.get("categorie") or "Autre",
+            )
+            for s in raw_skills
+        ]
 
         return {
             "profil": personne,
