@@ -25,10 +25,8 @@ def load_member_files(kind: str) -> list[dict]:
     docs: list[dict] = []
     for path in sorted((DATA_DIR / kind).glob("*.json")):
         if path.name.startswith("_"): #pour ignorer les fichiers d'exemple
-        if path.name.startswith("_"): #pour ignorer les fichiers d'exemple
             continue
         content = json.loads(path.read_text(encoding="utf-8"))
-        docs.extend(content if isinstance(content, list) else [content]) #applati le contenu en 1 liste unique
         docs.extend(content if isinstance(content, list) else [content]) #applati le contenu en 1 liste unique
     return docs
 
