@@ -15,6 +15,7 @@ from pathlib import Path
 from collections import Counter
 from portfolio_api.db.mongo import get_mongo_db
 from portfolio_api.db.neo4j import get_neo4j_driver
+from portfolio_api.models import Personne, Formation, Experience, Competence, Projet
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 
@@ -179,7 +180,14 @@ async def main() -> None:
     print(f"[seed] {len(competences)} compétence(s), {len(personne)} personne(s), "
           f"{len(projets)} projet(s) trouvés dans {DATA_DIR}")
 
+    # Validation unitaire de chaque fichier JSON via Pydantic
+    competences = [Competence(**c).model_dump() for c in competences]
+    personne = [Personne(**p).model_dump() for p in personne]
+    projets = [Projet(**j).model_dump() for j in projets]
+
+    # Puis validation des liens entre les collections
     check_references(competences, personne, projets)
+    
     await seed_mongo(competences, personne, projets)
     await seed_neo4j(competences, personne, projets)
     print("[seed] OK")
