@@ -1,0 +1,327 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Keep every @import in this top block. Never @import a remote URL: fonts load via <link> in __root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "topographie rétro".
+ * Cream editorial paper, petrol ink, and four accent inks (cyan, terracotta, sage, coral).
+ * Cards: crisp 1.5px petrol border + hard offset shadow + light glass.
+ */
+
+@theme inline {
+  --font-display: "Syne", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand inks */
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-petrol: var(--petrol);
+  --color-cyan: var(--cyan);
+  --color-terracotta: var(--terracotta);
+  --color-sage: var(--sage);
+  --color-coral: var(--coral);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --cream: oklch(0.975 0.009 78.3);
+  --paper: oklch(0.955 0.016 78);
+  --ink: oklch(0.25 0.05 228);
+  --petrol: oklch(0.414 0.071 226.3);
+  --cyan: oklch(0.742 0.085 225.3);
+  --terracotta: oklch(0.648 0.158 48);
+  --sage: oklch(0.652 0.079 151.8);
+  --coral: oklch(0.786 0.107 359.5);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.985 0.008 78 / 0.72);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--petrol);
+  --primary-foreground: var(--cream);
+  --secondary: var(--paper);
+  --secondary-foreground: var(--petrol);
+  --muted: var(--paper);
+  --muted-foreground: oklch(0.46 0.04 228);
+  --accent: var(--terracotta);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: var(--petrol);
+  --input: var(--petrol);
+  --ring: var(--terracotta);
+
+  --chart-1: var(--petrol);
+  --chart-2: var(--terracotta);
+  --chart-3: var(--sage);
+  --chart-4: var(--cyan);
+  --chart-5: var(--coral);
+
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--petrol);
+  --sidebar-primary-foreground: var(--cream);
+  --sidebar-accent: var(--cream);
+  --sidebar-accent-foreground: var(--petrol);
+  --sidebar-border: var(--petrol);
+  --sidebar-ring: var(--terracotta);
+
+  --shadow-hard: 4px 4px 0 var(--petrol);
+  --shadow-hard-lg: 7px 7px 0 var(--petrol);
+  --shadow-hard-accent: 4px 4px 0 var(--terracotta);
+  --border-ink: 1.5px solid var(--petrol);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--coral);
+    color: var(--ink);
+  }
+}
+
+/* Graphic card: light glass + crisp border + hard offset shadow */
+@utility card-topo {
+  background: var(--card);
+  backdrop-filter: blur(10px) saturate(130%);
+  border: var(--border-ink);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-hard);
+}
+
+@utility card-lift {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--shadow-hard-lg);
+  }
+}
+
+@utility border-ink {
+  border: var(--border-ink);
+}
+
+@utility shadow-hard {
+  box-shadow: var(--shadow-hard);
+}
+
+@utility shadow-hard-accent {
+  box-shadow: var(--shadow-hard-accent);
+}
+
+@utility text-outline {
+  -webkit-text-stroke: 1.5px var(--petrol);
+  color: transparent;
+}
+
+@utility paper-grain {
+  background-image:
+    radial-gradient(color-mix(in oklab, var(--petrol) 9%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Animated contour lines */
+@keyframes wave-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-wave-slide {
+  animation: wave-slide 26s linear infinite;
+}
+
+@keyframes topo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-topo-spin {
+  animation: topo-spin 140s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@utility animate-blink {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wave-slide,
+  .animate-topo-spin {
+    animation: none;
+  }
+}
+
+/* Markdown content inside project modal */
+.markdown {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--petrol);
+  margin: 1.4em 0 0.5em;
+  line-height: 1.2;
+}
+.markdown h2 {
+  font-size: 1.25rem;
+}
+.markdown h3 {
+  font-size: 1.05rem;
+}
+.markdown p {
+  margin: 0.7em 0;
+}
+.markdown ul,
+.markdown ol {
+  margin: 0.7em 0;
+  padding-left: 1.3em;
+}
+.markdown ul {
+  list-style: none;
+}
+.markdown ul li {
+  position: relative;
+}
+.markdown ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.05em;
+  top: 0.62em;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 999px;
+  background: var(--terracotta);
+}
+.markdown ol {
+  list-style: decimal;
+}
+.markdown a {
+  color: var(--petrol);
+  text-decoration: underline;
+  text-decoration-color: var(--terracotta);
+  text-underline-offset: 3px;
+}
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--paper);
+  border: 1px solid color-mix(in oklab, var(--petrol) 30%, transparent);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+.markdown pre {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+.markdown pre code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: 0;
+}
+.markdown strong {
+  color: var(--petrol);
+}
+.markdown blockquote {
+  border-left: 3px solid var(--sage);
+  padding-left: 1em;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
