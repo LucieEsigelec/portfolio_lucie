@@ -1,4 +1,4 @@
-set shell := ["powershell.exe", "-Command"]
+
 
 
 set dotenv-load := true
@@ -26,11 +26,11 @@ install:
 
 # Lancer l'API (http://localhost:8000/docs)
 dev:
-    cd backend ; uv run uvicorn portfolio_api.main:app --reload --port 8000
+    cd backend/src ; uv run uvicorn portfolio_api.main:app --reload --port 8000
 
 # Peupler MongoDB et Neo4j depuis data/
 seed:
-    cd backend ; uv run python -m portfolio_api.scripts.seed
+    cd backend/src ; uv run python -m portfolio_api.scripts.seed
 
 # Tests du backend
 test:
