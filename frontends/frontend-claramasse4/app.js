@@ -291,4 +291,12 @@ async function init() {
     console.log("Chargement terminé.");
 }
 
+document.querySelector("footer a[href='#top']")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
+
+
 init();

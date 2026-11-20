@@ -485,3 +485,7 @@ footer a:hover { color: var(--brown-dark); }
   padding-top: 8rem !important; /* éloigne la ligne du titre Expérience */
 }
 
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
