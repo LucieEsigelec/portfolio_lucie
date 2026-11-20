@@ -382,6 +382,11 @@ h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 4.5vw
   background: var(--paper);
 }
 
+
+
+
+
+
 /* Centres d'intérêt */
 .interests {
   display: grid;
@@ -489,3 +494,7 @@ section[id] {
   scroll-margin-top: 6rem;
 }
 
+.interests {
+  max-width: 760px;
+  margin: 0 auto;
+}
