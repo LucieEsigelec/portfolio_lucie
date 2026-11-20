@@ -1,0 +1,55 @@
+[
+  {
+    "slug": "lucie-reichardt-acl-digital-assist",
+    "personne_slugs": ["lucie-reichardt"],
+    "titre": "ACL-Digital Assist — Application mobile de rééducation post-LCA",
+    "resume": "Application mobile e-santé en React Native avec architecture Supabase/PostgreSQL pour le suivi en temps réel de protocoles de rééducation du genou.",
+    "contenu_md": "## Contexte & Objectifs\nDéveloppement d'une solution de santé connectée au sein du laboratoire de recherche biomédicale de l'UTFPR (Curitiba, Brésil) pour évaluer et suivre la rééducation du ligament croisé antérieur (LCA).\n\n## Réalisations techniques\n- **Application mobile (React Native)** : acquisition et monitoring en temps réel des mouvements lors des exercices de rééducation.\n- **Architecture Data (Supabase / PostgreSQL)** : conception complète du modèle relationnel et gestion des flux de données patients/cliniciens.\n- **Validation clinique & UX** : animation d'ateliers de démonstration auprès d'étudiants et professionnels en kinésithérapie.\n- **Valorisation scientifique** : rédaction d'un article de recherche soumis au *Congresso Brasileiro de Engenharia Biomédica* (CBEB).",
+    "liens": { "github": null, "demo": null },
+    "metriques": {
+      "duree_semaines": 12,
+      "publication": "CBEB 2026"
+    },
+    "skills_slugs": ["react-native", "supabase", "postgresql", "modelisation-donnees", "git", "redaction-communication"],
+    "date_realisation": "2026",
+    "contexte_id": "lucie-reichardt-utfpr-2026"
+  },
+  {
+    "slug": "lucie-reichardt-automatisation-power-apps",
+    "personne_slugs": ["lucie-reichardt"],
+    "titre": "Plateforme d'automatisation des workflows opérationnels (Power Apps)",
+    "resume": "Conception et déploiement d'applications métiers internes automatisant les processus interdépartementaux pour plus de 100 utilisateurs chez Renault.",
+    "contenu_md": "## Contexte & Enjeux\nRemplacement de processus manuels dispersés par une suite d'outils internes centralisés et connectés aux référentiels métiers.\n\n## Réalisations techniques\n- **Développement Low-Code (Power Apps & Power Automate)** : création d'interfaces métiers ergonomiques et de flux d'approbation automatisés.\n- **Structuration des données** : fiabilisation de la saisie et réduction des erreurs opérationnelles.\n- **Conduite du changement** : recueil des besoins auprès des équipes pluridisciplinaires, rédaction des guides et formation des utilisateurs non techniques.",
+    "liens": { "github": null, "demo": null },
+    "metriques": {
+      "utilisateurs_actifs": "+100"
+    },
+    "skills_slugs": ["power-apps", "power-automate", "modelisation-donnees", "gestion-de-projet", "travail-en-equipe"],
+    "date_realisation": "2025",
+    "contexte_id": "lucie-reichardt-renault-2024"
+  },
+  {
+    "slug": "lucie-reichardt-monitoring-performance-moteur",
+    "personne_slugs": ["lucie-reichardt"],
+    "titre": "Dashboards décisionnels de monitoring des performances moteur",
+    "resume": "Conception de tableaux de bord analytiques sous Looker et Spotfire pour le suivi industriel et l'aide à la décision.",
+    "contenu_md": "## Contexte & Objectifs\nMise à disposition d'indicateurs clés (KPIs) fiables et visuels pour les équipes techniques et les directions métier.\n\n## Réalisations techniques\n- **Requêtage & Préparation (SQL / Python)** : extraction, nettoyage et agrégation des données de performance moteur.\n- **Data Visualisation (Looker & Spotfire)** : conception de tableaux de bord interactifs permettant d'identifier rapidement les dérives et leviers d'amélioration.\n- **Restitution métier** : présentation régulière des insights aux décideurs.",
+    "liens": { "github": null, "demo": null },
+    "metriques": {},
+    "skills_slugs": ["looker", "spotfire", "sql", "python", "etl"],
+    "date_realisation": "2025",
+    "contexte_id": "lucie-reichardt-renault-2024"
+  },
+  {
+    "slug": "lucie-reichardt-bi-industrielle-sopano",
+    "personne_slugs": ["lucie-reichardt"],
+    "titre": "Tableaux de bord de suivi opérationnel et industriel sous Power BI",
+    "resume": "Modélisation de données et création de rapports Power BI temps réel pour le pilotage de la performance industrielle chez SOPANO.",
+    "contenu_md": "## Réalisations techniques\n- **Modélisation de données** : structuration des sources opérationnelles pour le reporting.\n- **Tableaux de bord Power BI** : suivi en temps réel des métriques de production et identification de pistes d'optimisation avec les équipes.",
+    "liens": { "github": null, "demo": null },
+    "metriques": {},
+    "skills_slugs": ["power-bi", "modelisation-donnees", "travail-en-equipe"],
+    "date_realisation": "2024",
+    "contexte_id": "lucie-reichardt-sopano-2024"
+  }
+]

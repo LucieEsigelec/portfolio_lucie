@@ -1,0 +1,107 @@
+{
+  "slug": "lucie-reichardt",
+  "prenom": "Lucie",
+  "nom": "Reichardt",
+  "titre": "Ingénieure Data & Développement Logiciel",
+  "bio": "Spécialisée en data et développement logiciel. Forte d'une expérience dans la conception d'outils internes et d'interfaces simplifiant les flux opérationnels, je développe des solutions performantes axées sur les données.",
+  "liens": {
+    "github": "https://github.com/LucieEsigelec",
+    "linkedin": "https://www.linkedin.com/in/lucie-reichardt-648420286/",
+    "email": "lucie.reichardt@hotmail.com"
+  },
+  "formations": [
+    {
+      "id": "lucie-reichardt-esigelec-ing-2027",
+      "ecole": "ESIGELEC",
+      "diplome": "Cycle ingénieur — Informatique, dominante Big Data pour la transformation du numérique",
+      "debut": "2024",
+      "fin": "2027",
+      "description": "Formation d'ingénieur en informatique et ingénierie des données : traitement distribué, modélisation relationnelle, business intelligence et conception logicielle.",
+      "modules": [
+        "Big Data et traitement distribué (Spark)",
+        "Modélisation relationnelle et bases de données",
+        "Conception de solutions logicielles",
+        "Business Intelligence et aide à la décision"
+      ],
+      "competences": ["python", "sql", "java", "spark", "modelisation-donnees", "git", "linux"]
+    },
+    {
+      "id": "lucie-reichardt-esigelec-prepa-2024",
+      "ecole": "ESIGELEC",
+      "diplome": "Cycle préparatoire intégré",
+      "debut": "2022",
+      "fin": "2024",
+      "description": "Tronc commun scientifique et technique en classes préparatoires intégrées.",
+      "modules": [
+        "Mathématiques",
+        "Mécanique",
+        "Électricité",
+        "Thermodynamique",
+        "Électromagnétisme"
+      ],
+      "competences": ["c", "python", "html", "css"]
+    },
+    {
+      "id": "lucie-reichardt-bac-2022",
+      "ecole": "Lycée Fénelon",
+      "diplome": "Baccalauréat Général (Mention Très Bien) — Spécialités Physique et Anglais",
+      "debut": "2022",
+      "fin": "2022",
+      "description": "Obtention du baccalauréat avec mention Très Bien (TOEIC 975 - niveau C1).",
+      "modules": [
+        "Physique-Chimie",
+        "Anglais approfondi"
+      ],
+      "competences": []
+    }
+  ],
+  "experiences": [
+    {
+      "id": "lucie-reichardt-renault-2024",
+      "type": "emploi",
+      "structure": "Renault (Ampère)",
+      "lieu": "Cléon",
+      "poste": "Apprentie ingénieure data",
+      "debut": "2024",
+      "fin": "2027",
+      "missions": [
+        "Conception et déploiement d'outils internes sous Power Apps : automatisation de workflows interdépartementaux, réduction de la saisie manuelle et gain d'efficacité opérationnelle (+100 utilisateurs).",
+        "Élaboration de dashboards sous Looker et Spotfire pour le monitoring des performances moteur.",
+        "Collaboration avec des équipes pluridisciplinaires : cadrage et recueil des besoins, formation et accompagnement des profils non techniques.",
+        "Présentation d'insights data aux directions métier en soutien à l'aide à la décision."
+      ],
+      "competences": ["power-apps", "power-automate", "looker", "spotfire", "sql", "python", "etl", "travail-en-equipe", "gestion-de-projet"]
+    },
+    {
+      "id": "lucie-reichardt-utfpr-2026",
+      "type": "stage",
+      "structure": "UTFPR — Laboratoire de recherche biomédicale",
+      "lieu": "Curitiba, Brésil",
+      "poste": "Stagiaire Développement Mobile & Data Engineering (3 mois)",
+      "debut": "2026",
+      "fin": "2026",
+      "missions": [
+        "Développement d'une application mobile e-santé (React Native) : monitoring en temps réel de protocoles de rééducation du ligament croisé antérieur (LCA).",
+        "Architecture et modélisation de base de données (Supabase / PostgreSQL) : structuration complète du modèle relationnel et gestion des flux de données.",
+        "Publication scientifique (CBEB) : rédaction d'un article de recherche soumis au Congresso Brasileiro de Engenharia Biomédica.",
+        "Tests utilisateurs et vulgarisation technique : animation d'ateliers de démonstration auprès de futurs kinésithérapeutes et professionnels de santé pour valider l'ergonomie (UX)."
+      ],
+      "competences": ["react-native", "supabase", "postgresql", "modelisation-donnees", "git", "redaction-communication", "travail-en-equipe"]
+    },
+    {
+      "id": "lucie-reichardt-sopano-2024",
+      "type": "stage",
+      "structure": "SOPANO",
+      "lieu": null,
+      "poste": "Stagiaire systèmes d'informations (1 mois)",
+      "debut": "2024",
+      "fin": "2024",
+      "missions": [
+        "Montée en compétences et exploitation de Power BI : analyse des performances globales et modélisation de données.",
+        "Création de tableaux de bord décisionnels : suivi en temps réel des métriques opérationnelles et industrielles.",
+        "Identification de leviers d'amélioration en équipe via la valorisation et la restitution d'insights data."
+      ],
+      "competences": ["power-bi", "modelisation-donnees", "travail-en-equipe"]
+    }
+  ]
+}
