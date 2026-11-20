@@ -33,7 +33,12 @@ logging.info(settings.app_name + " is running in debug mode: " + str(settings.de
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origin_list,
+    allow_origins=[
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://10.185.231.56:8080",
+    "http://localhost:5173",
+],
     allow_methods=["*"],
     allow_headers=["*"],
 )
