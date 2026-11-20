@@ -11,7 +11,8 @@ from portfolio_api.core.config import get_settings
 from portfolio_api.db.mongo import close_mongo
 from portfolio_api.db.neo4j import close_neo4j
 from portfolio_api.models import HealthResponse
-
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -27,6 +28,8 @@ app = FastAPI(
     description="API d'équipe du Portfolio Polyglotte — voir API_ROUTES.md",
     lifespan=lifespan,
 )
+logging.info("CORS origins: " + ", ".join(settings.cors_origin_list))
+logging.info(settings.app_name + " is running in debug mode: " + str(settings.debug))
 
 app.add_middleware(
     CORSMiddleware,
