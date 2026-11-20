@@ -47,7 +47,7 @@ class Experience(BaseModel):
     debut: str = Field(..., examples=["2026-04"])
     fin: Optional[str] = Field(None, examples=["2026-09"])
     missions: list[str] = Field(default_factory=list)
-    competences: list[Competence] = Field(default_factory=list, examples=[["python", "mongodb"]])
+    competences: list[str] = Field(default_factory=list, examples=[["python", "mongodb"]])
 
 
 # ── Personne (Collection Mongo + Propriété dans Neo4j) ───────────
@@ -60,7 +60,7 @@ class Personne(BaseModel):
     contacts: Contact = Field(default_factory=Contact)
     formations: list[Formation] = Field(default_factory=list)
     experiences: list[Experience] = Field(default_factory=list)
-    competences: list[Competence] = Field(default_factory=list, examples=[["python", "docker"]])
+    competences: list[str] = Field(default_factory=list, examples=[["python", "docker"]])
 
 class PersonneDetail(BaseModel):
     profil: Personne
