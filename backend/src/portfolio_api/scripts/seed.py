@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 from pathlib import Path
 
 from collections import Counter
@@ -19,7 +20,7 @@ from portfolio_api.models import Personne, Formation, Experience, Competence, Pr
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 
-
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 def load_member_files(kind: str) -> list[dict]:
     """Charge data/<kind>/*.json (hors fichiers commençant par '_', ex. _exemple.json)."""
     docs: list[dict] = []
@@ -88,12 +89,15 @@ async def seed_mongo(competences: list[dict], personne: list[dict], projets: lis
 async def seed_neo4j(competences: list[dict], personne: list[dict], projets: list[dict]) -> None:
     """Reconstruit le graphe tel que défini dans ARCHITECTURE.md §4.1."""
     driver = get_neo4j_driver()
+    logging.info("Seed Neo4j : suppression du graphe existant et création des contraintes")
     async with driver.session() as session:
         # Repart d'un graphe vide. DETACH supprime aussi les relations.
-        await session.run("MATCH (n) DETACH DELETE n")
+        # await session.run("MATCH (n) DETACH DELETE n")
 
-        for cypher in CONTRAINTES:
-            await session.run(cypher)
+        logging.info("Compétences : création des nœuds et relations")
+        # for cypher in CONTRAINTES:
+        #     await session.run(cypher)
+        #     logging.info(f"Seed Neo4j : {cypher}")
 
         # noeuds compétences
         await session.run("""
@@ -230,17 +234,19 @@ async def seed_neo4j(competences: list[dict], personne: list[dict], projets: lis
     driver = get_neo4j_driver()
     async with driver.session() as session:
         # Repart d'un graphe vide. DETACH supprime aussi les relations.
-        await session.run("MATCH (n) DETACH DELETE n")
+        # await session.run("MATCH (n) DETACH DELETE n")
 
-        for cypher in CONTRAINTES:
-            await session.run(cypher)
+        # for cypher in CONTRAINTES:
+        #     await session.run(cypher)
 
         # noeuds compétences
         await session.run("""
             UNWIND $competences AS c
             MERGE (n:Competence {slug: c.slug})
             SET n.nom = c.nom, n.categorie = c.categorie""", competences=competences)
-
+        logging.info("Compétences : création des nœuds et relations")
+        logging.info(f"Seed Neo4j : {len(competences)} compétences créées")
+        logging.info(f"Seed Neo4j : {len(personne)} personnes créées")
         #noeuds expériences et relations UTILISE
         await session.run("""
             UNWIND $personne AS c
@@ -301,6 +307,8 @@ async def seed_neo4j(competences: list[dict], personne: list[dict], projets: lis
             WITH p1, p2, count(c) AS score
             MERGE (p1)-[r:SIMILAIRE]->(p2)
             SET r.score = score""")
+
+        session.close()
     print("[seed] Neo4j — OK")
 
 
