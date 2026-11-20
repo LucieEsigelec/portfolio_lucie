@@ -47,7 +47,7 @@ class Experience(BaseModel):
     debut: str = Field(..., examples=["2026-04"])
     fin: Optional[str] = Field(None, examples=["2026-09"])
     missions: list[str] = Field(default_factory=list)
-    competences: list[str] = Field(default_factory=list, examples=[["python", "mongodb"]])
+    competences: list[Competence] = Field(default_factory=list, examples=[["python", "mongodb"]])
 
 
 # ── Personne (Collection Mongo + Propriété dans Neo4j) ───────────
@@ -60,8 +60,11 @@ class Personne(BaseModel):
     contacts: Contact = Field(default_factory=Contact)
     formations: list[Formation] = Field(default_factory=list)
     experiences: list[Experience] = Field(default_factory=list)
-    competences: list[str] = Field(default_factory=list, examples=[["python", "docker"]])
+    competences: list[Competence] = Field(default_factory=list, examples=[["python", "docker"]])
 
+class PersonneDetail(BaseModel):
+    profil: Personne
+    competences_graphe: list[Competence] = Field(default_factory=list)
 
 # ── Projet (Collection Mongo + Nœud Neo4j) ───────────────────────
 class Projet(BaseModel):
@@ -72,3 +75,61 @@ class Projet(BaseModel):
     contexte_id: str = Field(..., examples=["form-esigelec-2024"])
     personne_slugs: list[str] = Field(default_factory=list, examples=[["bruce-wayne"]])
     skills_slugs: list[str] = Field(default_factory=list, examples=[["python", "neo4j"]])
+    
+
+# ── Schémas d'écriture partielle (PATCH) ─────────────────────────
+class CompetenceUpdate(BaseModel):
+    nom: Optional[str] = None
+    categorie: Optional[str] = None
+    niveau: Optional[Literal["Débutant", "Intermédiaire", "Avancé", "Expert"]] = None
+    mots_cles: Optional[list[str]] = None
+
+
+class ProjetUpdate(BaseModel):
+    titre: Optional[str] = None
+    description: Optional[str] = None
+    date_realisation: Optional[str] = None
+    contexte_id: Optional[str] = None
+    personne_slugs: Optional[list[str]] = None
+    skills_slugs: Optional[list[str]] = None
+
+
+# ── Schémas de réponses enrichies (MongoDB + Neo4j) ──────────────
+class CompetenceUsage(BaseModel):
+    type: str
+    ref: str
+    titre: str
+
+
+class CompetenceDetail(Competence):
+    usages: list[CompetenceUsage] = Field(default_factory=list)
+
+
+class ProjetSimilaire(BaseModel):
+    slug: str
+    titre: str
+    annee: Optional[int] = None
+    score: float | int
+
+
+class CompetenceLight(BaseModel):
+    slug: str
+    nom: str
+    categorie: Optional[str] = None
+
+
+class ProjetDetail(Projet):
+    competences_detaillees: list[CompetenceLight] = Field(default_factory=list)
+    projets_similaires: list[ProjetSimilaire] = Field(default_factory=list)
+
+
+# ── Schémas pour les agrégations & statistiques ──────────────────
+class StatCompetenceProjet(BaseModel):
+    competence_slug: str
+    nb_projets: int
+
+
+class StatCategorieCompetence(BaseModel):
+    categorie: str
+    total: int
+    competences: list[CompetenceLight] = Field(default_factory=list)
