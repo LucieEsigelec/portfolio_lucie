@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     neo4j_user: str = "neo4j"
     neo4j_password: str = "password"
 
-    cors_origins: str = "http://localhost:3000,http://localhost:5173,http://localhost:8501"
+    cors_origins: str = "*"
 
     @property
     def cors_origin_list(self) -> list[str]:
