@@ -1,0 +1,27 @@
+[
+  { "slug": "python", "nom": "Python", "categorie": "Langage", "ordre_affichage": 1 },
+  { "slug": "java", "nom": "Java", "categorie": "Langage", "ordre_affichage": 2 },
+  { "slug": "c", "nom": "C", "categorie": "Langage", "ordre_affichage": 3 },
+  { "slug": "php", "nom": "PHP", "categorie": "Langage", "ordre_affichage": 4 },
+  { "slug": "html-css", "nom": "HTML/CSS", "categorie": "Langage", "ordre_affichage": 5 },
+
+  { "slug": "sql", "nom": "SQL", "categorie": "Base de données", "ordre_affichage": 10 },
+  { "slug": "mongodb", "nom": "MongoDB", "categorie": "Base de données", "ordre_affichage": 11 },
+  { "slug": "neo4j", "nom": "Neo4j", "categorie": "Base de données", "ordre_affichage": 12 },
+
+  { "slug": "data-modeling", "nom": "Modélisation de données", "categorie": "Data engineering", "ordre_affichage": 20 },
+  { "slug": "pipeline-design", "nom": "Conception de pipelines", "categorie": "Data engineering", "ordre_affichage": 21 },
+  { "slug": "data-analysis", "nom": "Analyse de données", "categorie": "Data engineering", "ordre_affichage": 22 },
+
+  { "slug": "looker", "nom": "Looker", "categorie": "BI & visualisation", "ordre_affichage": 30 },
+  { "slug": "lookml", "nom": "LookML", "categorie": "BI & visualisation", "ordre_affichage": 31 },
+
+  { "slug": "git", "nom": "Git", "categorie": "DevOps & outils", "ordre_affichage": 40 },
+  { "slug": "linux", "nom": "Linux", "categorie": "DevOps & outils", "ordre_affichage": 41 },
+  { "slug": "docker", "nom": "Docker", "categorie": "DevOps & outils", "ordre_affichage": 42 },
+
+  { "slug": "excel", "nom": "Excel", "categorie": "Bureautique & communication", "ordre_affichage": 60 },
+
+  { "slug": "travail-en-equipe", "nom": "Travail en équipe", "categorie": "Transversale", "ordre_affichage": 70 },
+  { "slug": "gestion-de-projet", "nom": "Gestion de projet", "categorie": "Transversale", "ordre_affichage": 71 }
+]

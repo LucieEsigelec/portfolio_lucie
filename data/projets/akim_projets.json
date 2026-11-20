@@ -1,0 +1,40 @@
+[
+    {
+    "slug": "akim-lamtamri-knarr",
+    "personne_slugs": ["akim-lamtamri"],
+    "titre": "Développement du jeu de société KNARR en Python",
+    "resume": "Implémentation numérique complète du jeu de plateau KNARR en Python.",
+    "contenu_md": "## Objectif\n- Modélisation des règles, de la gestion des ressources et de la logique de tour du jeu de société KNARR.\n- Développement de l'application en Python dans le cadre de la formation d'ingénieur à l'ESIGELEC.",
+    "liens": { "github": null, "demo": null },
+    "metriques": {},
+    "skills_slugs": ["python", "git"],
+    "date_realisation": "2024",
+    "contexte_id": "akim-lamtamri-esigelec-2027"
+    },
+    {
+  "slug": "akim-lamtamri-gestion-bibliotheque",
+  "personne_slugs": ["akim-lamtamri"],
+  "titre": "Système de gestion de bibliothèque (Java & Base de données)",
+  "resume": "Conception d'une application Java connectée à une base de données relationnelle pour la gestion d'une bibliothèque.",
+  "contenu_md": "## Missions\n- Conception du modèle de base de données et des requêtes SQL.\n- Développement de l'application orientée objet en Java pour la gestion des ouvrages, adhérents et emprunts.",
+  "liens": { "github": null, "demo": null },
+  "metriques": {},
+  "skills_slugs": ["java", "sql", "data-modeling"],
+  "date_realisation": "2025",
+  "contexte_id": "akim-lamtamri-esigelec-2027"
+},
+{
+  "slug": "akim-lamtamri-dev-web-php",
+  "personne_slugs": ["akim-lamtamri"],
+  "titre": "Application Web dynamique en PHP",
+  "resume": "Développement d'une application web full-stack avec PHP, HTML/CSS et base de données SQL.",
+  "contenu_md": "## Missions\n- Conception des interfaces front-end en HTML/CSS.\n- Développement du back-end en PHP et intégration avec une base de données relationnelle.",
+  "liens": { "github": null, "demo": null },
+  "metriques": {},
+  "skills_slugs": ["php", "html-css", "sql"],
+  "date_realisation": "2025",
+  "contexte_id": "akim-lamtamri-esigelec-2027"
+}
+]
+
+

@@ -1,0 +1,78 @@
+{
+  "slug": "akim-lamtamri",
+  "prenom": "Akim",
+  "nom": "Lamtamri",
+  "titre": "Apprenti Data Engineer",
+  "bio": "Élève-ingénieur généraliste spécialisé en ingénierie des données (Big Data pour la transformation du numérique), concevant des tableaux de bord et des pipelines de données pour accompagner la prise de décision.",
+  "liens": {
+    "github": null,
+    "linkedin": "https://www.linkedin.com",
+    "email": "akim@lamtamri.com"
+  },
+
+  "formations": [
+    {
+      "id": "akim-lamtamri-esigelec-2027",
+      "ecole": "ESIGELEC",
+      "diplome": "Diplôme d'ingénieur généraliste par apprentissage, dominante Big Data pour la transformation du numérique",
+      "debut": "2022",
+      "fin": "2027",
+      "description": "Formation multidisciplinaire axée sur l'informatique, l'ingénierie des données et la réalisation de projets logiciels.",
+      "modules": [
+        "Développement web (PHP)",
+        "Programmation orientée objet et bases de données (Java)",
+        "Développement logiciel et algorithmique (Python)",
+        "Ingénierie et modélisation des données",
+        "Bases de données NoSQL (MongoDB, Neo4j)"
+      ],
+      "competences": ["python", "java", "php", "html-css", "sql", "mongodb", "neo4j", "git"]
+    },
+    {
+      "id": "akim-lamtamri-bac-2023",
+      "ecole": "Lycée",
+      "diplome": "Baccalauréat général — Spécialités Mathématiques et Physique-Chimie (Mention Bien)",
+      "debut": "2020",
+      "fin": "2023",
+      "description": "Parcours scientifique spécialisé en mathématiques et physique-chimie.",
+      "modules": [
+        "Mathématiques",
+        "Physique-Chimie"
+      ],
+      "competences": []
+    }
+  ],
+
+  "experiences": [
+    {
+      "id": "akim-lamtamri-renault-2024",
+      "type": "emploi",
+      "structure": "Groupe Renault",
+      "lieu": "Cléon",
+      "poste": "Apprenti Data Engineer (Équipe transversale Data & Analytics)",
+      "debut": "2024",
+      "fin": null,
+      "missions": [
+        "Conception et maintenance de tableaux de bord Looker et de modèles de données pour améliorer la visibilité sur la production et la logistique.",
+        "Rétro-ingénierie des structures de données industrielles et des tableaux de bord pour garantir la fiabilité des KPI et du reporting.",
+        "Collaboration avec des équipes internationales pour livrer des solutions data adaptées aux enjeux manufacturing et supply chain.",
+        "Contribution à la démocratisation de l'IA et promotion d'une culture data-driven au sein de l'organisation.",
+        "Accompagnement de projets transverses avec les départements production, qualité et IT."
+      ],
+      "competences": ["sql", "looker", "lookml", "python", "data-modeling", "data-analysis", "pipeline-design", "travail-en-equipe"]
+    },
+    {
+      "id": "akim-lamtamri-safran-2023",
+      "type": "stage",
+      "structure": "Safran Aerosystems",
+      "lieu": "Caudebec-lès-Elbeuf",
+      "poste": "Stagiaire découverte",
+      "debut": "2023",
+      "fin": "2023",
+      "missions": [
+        "Découverte du fonctionnement de l'entreprise à travers différents services : ingénierie, contrôle qualité, service client et production.",
+        "Participation au suivi de gestion de projet et à la compréhension des processus industriels."
+      ],
+      "competences": ["gestion-de-projet", "travail-en-equipe"]
+    }
+  ]
+}
