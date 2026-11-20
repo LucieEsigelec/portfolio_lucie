@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
@@ -36,31 +37,28 @@
         <h2 class="drawer-title">Entrons en contact</h2>
         <p class="drawer-sub">Échangeons autour d'opportunités en data engineering, analytics ou machine learning.</p>
         <ul class="contact-list">
-            <li>
-             <!-- <span>Téléphone</span> 
-                <a id="contactPhone" href="#">Chargement...</a>
-            </li>-->
+          <!-- Téléphone désactivé pour l'instant
+          <li>
+            <span>Téléphone</span>
+            <a id="contactPhone" href="#">Chargement...</a>
+          </li>
+          -->
 
-            <li>
-                <span>Email</span>
-                <a id="contactEmail" href="#">Chargement...</a>
-            </li>
+          <li>
+            <span>Email</span>
+            <a id="contactEmail" href="#">Chargement...</a>
+          </li>
 
-            <li>
-                <span>LinkedIn</span>
-                <a id="contactLinkedIn" href="#" target="_blank" rel="noopener">
-                    Chargement...
-                </a>
-            </li>
+          <li>
+            <span>LinkedIn</span>
+            <a id="contactLinkedIn" href="#" target="_blank" rel="noopener">Chargement...</a>
+          </li>
 
-            <li id="contactGitHubItem" hidden>
-                <span>GitHub</span>
-                <a id="contactGitHub" href="#" target="_blank" rel="noopener"> Non Renseigné</a>
-            </li>
-</ul>
-      </div>
-      <div class="drawer-foot">
-        Disponible à partir du <strong>13 septembre 2027</strong>.
+          <li id="contactGitHubItem" hidden>
+            <span>GitHub</span>
+            <a id="contactGitHub" href="#" target="_blank" rel="noopener">Non Renseigné</a>
+          </li>
+        </ul>
       </div>
     </div>
   </aside>
@@ -78,7 +76,8 @@
       <span class="job b">Data Scientist</span>
       <span class="job c">Data Engineer</span>
       <span class="job d">Data Product Owner</span>
-      <span class="job f">BI Analyst</span>
+      <span class="job e">BI Analyst</span>
+      <span class="job f">AI Engineer</span>
     </div>
     <a class="scroll-hint" href="#a-propos">Découvrir</a>
   </header>
@@ -91,29 +90,23 @@
     </div>
   </div>-->
 
-<!-- Ligne de séparation -->
-<div class="section-divider"></div>
-
+  <!-- Ligne de séparation -->
+  <div class="section-divider"></div>
+  
   <!-- À propos -->
   <section id="a-propos">
-    <div class="wrap about">
+    <div class="wrap about-simple">
       <div class="reveal">
         <p class="eyebrow">À propos</p>
-        <p class="lead">Data engineer en formation, je transforme des données dispersées en outils fiables et lisibles.</p>
       </div>
       <div class="reveal">
-        <p class="text">
-          Étudiante en dernière année de diplôme d'ingénieurs à l'ESIGELEC, spécialisée en big data.
-          J'ai travaillé sur la migration d'un entrepôt de données chez Ayvens et j'alterne aujourd'hui
-          comme analyste de données chez Groupe Renault, entre requêtage, tableaux de bord et modèles prédictifs.
-        </p>
-        <div class="availability">
-          <span>Disponible à partir du <strong>13 septembre 2027</strong>.</span>
-          <button class="inline-contact-link" type="button" data-open-contact>Me contacter →</button>
-        </div>
+        <p class="bio-centered" id="bio"></p>
       </div>
     </div>
   </section>
+
+    <!-- Ligne de séparation -->
+  <div class="section-divider"></div>
 
   <!-- Expérience professionnelle à gauche + grande photo à droite -->
   <section id="experiences" style="padding-top: 0;">
@@ -121,48 +114,7 @@
       <div class="exp-left">
         <p class="eyebrow reveal">Parcours</p>
         <h2 class="reveal">Expérience professionnelle</h2>
-        <div class="timeline">
-          <article class="item reveal">
-            <span class="when">2025 — aujourd'hui</span>
-            <h3>Alternante analyste de données</h3>
-            <p class="org">Groupe Renault, Cléon</p>
-            <ul>
-              <li><strong>Analyse et structuration des données</strong> : requêtage et exploration pour répondre aux besoins métier.</li>
-              <li><strong>Data &amp; BI</strong> : développement de tableaux de bord et d'outils de visualisation.</li>
-              <li><strong>Machine learning &amp; IA prédictive</strong> : modélisation et développement d'approches prédictives.</li>
-              <li><strong>Support</strong> : analyse des incidents et coordination avec le siège pour leur résolution.</li>
-            </ul>
-          </article>
-          <article class="item reveal">
-            <span class="when">2026 · 3 mois</span>
-            <h3>Stagiaire data engineer</h3>
-            <p class="org">Ayvens Global (filiale du groupe Société Générale), Amsterdam</p>
-            <ul>
-              <li><strong>Migration Snowflake vers Databricks</strong> : inventaire des tables et cas d'usage, cartographie des dépendances et développement d'une interface graphique.</li>
-              <li><strong>Audit des règles de rétention</strong> : comparaison des règles logicielles avec les référentiels Excel des entités pour identifier les règles manquantes.</li>
-            </ul>
-          </article>
-          <article class="item reveal">
-            <span class="when">2025 · 1 mois</span>
-            <h3>Stagiaire opératrice machine</h3>
-            <p class="org">GREIF, Grand Quevilly</p>
-            <ul>
-              <li>Conduite continue de machines.</li>
-              <li>Tests qualité sur les produits.</li>
-              <li>Suivi de la production et contrôle de la performance.</li>
-            </ul>
-          </article>
-          <article class="item reveal">
-            <span class="when">2022 — 2025</span>
-            <h3>Animatrice jeunesse (BAFA)</h3>
-            <p class="org">Communauté de communes Roumois Seine, Normandie</p>
-            <ul>
-              <li>Gestion d'un camp.</li>
-              <li>Encadrement d'enfants de 3 à 12 ans.</li>
-              <li>Organisation de projets et d'événements.</li>
-            </ul>
-          </article>
-        </div>
+        <div class="timeline" id="experiencesList"></div>
       </div>
 
       <aside class="exp-photo-wrap reveal" aria-label="Illustration parcours professionnel">
@@ -181,27 +133,7 @@
       <div class="assoc-right">
         <p class="eyebrow reveal">Vie associative</p>
         <h2 class="reveal">Engagement associatif</h2>
-        <div class="timeline">
-          <article class="item reveal">
-            <span class="when">2025 — aujourd'hui</span>
-            <h3>Présidente d'une association de développement durable</h3>
-            <p class="org">BSBG (Be Sustainable, Be Green), ESIGELEC</p>
-            <ul>
-              <li>Gestion de projets environnementaux.</li>
-              <li>Communication avec les partenaires et les étudiants.</li>
-            </ul>
-          </article>
-          <article class="item reveal">
-            <span class="when">2024 — aujourd'hui</span>
-            <h3>Chargée de communication</h3>
-            <p class="org">UNICEF Normandie</p>
-            <ul>
-              <li>Création de supports : newsletters, livrets, brochures, vidéos, diaporamas.</li>
-              <li>Animation des réseaux sociaux et mise en place d'événements.</li>
-              <li>Participation aux réunions de bureau.</li>
-            </ul>
-          </article>
-        </div>
+        <div class="timeline" id="assocList"></div>
       </div>
     </div>
   </section>
@@ -217,29 +149,10 @@
             <span class="dot" style="background:var(--accent)"></span>
             <h3>Compétences techniques</h3>
           </div>
-
-          <div class="skill-category">
-            <div class="group-head"><h4><span class="star">✳</span>Bases de données</h4></div>
-            <div class="chips"><span class="chip">Google BigQuery</span><span class="chip">Snowflake</span><span class="chip">SQL</span><span class="chip">MongoDB</span><span class="chip">Neo4j</span></div>
-          </div>
-          <div class="skill-category">
-            <div class="group-head"><h4><span class="star">✳</span>Data engineering &amp; ETL</h4></div>
-            <div class="chips"><span class="chip">dbt</span><span class="chip">Talend</span><span class="chip">Airflow</span><span class="chip">Spark</span><span class="chip">Hadoop</span><span class="chip">Databricks</span></div>
-          </div>
-          <div class="skill-category">
-            <div class="group-head"><h4><span class="star">✳</span>BI &amp; visualisation</h4></div>
-            <div class="chips"><span class="chip">Looker</span><span class="chip">LookML</span><span class="chip">Power BI</span><span class="chip">Grafana</span><span class="chip">Spotfire</span></div>
-          </div>
-          <div class="skill-category">
-            <div class="group-head"><h4><span class="star">✳</span>Analyse &amp; IA</h4></div>
-            <div class="chips"><span class="chip">Python</span><span class="chip">R</span><span class="chip">Machine learning</span></div>
-          </div>
-          <div class="skill-category">
-            <div class="group-head"><h4><span class="star">✳</span>Développement &amp; automatisation</h4></div>
-            <div class="chips"><span class="chip">Docker</span><span class="chip">Power Automate</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">PHP</span><span class="chip">HTML</span></div>
-          </div>
+          <div id="skillsList"></div>
         </article>
 
+        <!-- Non géré par l'API pour l'instant : reste en dur -->
         <article class="skill-panel reveal">
           <div class="skill-panel-title">
             <span class="dot" style="background:var(--sand)"></span>
@@ -267,6 +180,10 @@
     </div>
   </section>
 
+
+
+  
+
   <!-- Projets en rail défilant -->
   <section id="projets">
     <div class="wrap">
@@ -281,70 +198,13 @@
         </div>
       </div>
 
-      <div class="projects-rail reveal" id="projectsRail">
-        <article class="project-card">
-          <div>
-            <div class="project-visual"></div>
-            <div style="margin-top: 1.3rem;">
-              <span class="project-meta">2026 · Ayvens</span>
-              <h3>Migration d'un entrepôt de Snowflake vers Databricks</h3>
-              <p>Inventaire des tables et des cas d'usage, cartographie des dépendances entre les tables, et développement d'une interface graphique pour consulter cet inventaire pendant la migration.</p>
-            </div>
-          </div>
-          <div class="tags"><span class="tag">Snowflake</span><span class="tag">Databricks</span><span class="tag">Python</span></div>
-        </article>
-
-        <article class="project-card">
-          <div>
-            <div class="project-visual alt"></div>
-            <div style="margin-top: 1.3rem;">
-              <span class="project-meta">2026 · Ayvens</span>
-              <h3>Audit des règles de rétention</h3>
-              <p>Comparaison des règles logicielles avec les référentiels Excel de chaque entité, pour repérer les règles manquantes et fiabiliser la gouvernance.</p>
-            </div>
-          </div>
-          <div class="tags"><span class="tag">Audit</span><span class="tag">Data governance</span><span class="tag">Excel</span></div>
-        </article>
-
-        <article class="project-card">
-          <div>
-            <div class="project-visual"></div>
-            <div style="margin-top: 1.3rem;">
-              <span class="project-meta">2025 — aujourd'hui · Groupe Renault</span>
-              <h3>Tableaux de bord &amp; modèles prédictifs</h3>
-              <p>Structuration des données métier, conception d'outils de visualisation BI et développement d'approches d'IA prédictive pour l'aide à la décision.</p>
-            </div>
-          </div>
-          <div class="tags"><span class="tag">BI</span><span class="tag">Machine learning</span><span class="tag">SQL</span></div>
-        </article>
-      </div>
+      <div class="projects-rail reveal" id="projectsRail"></div>
     </div>
   </section>
 
-  <!-- Formation en encadré -->
+  <!-- Formation -->
   <section id="formation" style="padding-top: 0;">
-    <div class="wrap">
-      <div class="edu-box reveal">
-        <div>
-          <p class="eyebrow">Formation</p>
-          <span class="when">2022 — 2027 · 5e année</span>
-          <h3>Diplôme d'ingénieurs, dominante big data</h3>
-          <p class="org">ESIGELEC, Saint-Étienne-du-Rouvray</p>
-          <p class="edu-subtitle">Dominante : big data pour la transformation du numérique.</p>
-        </div>
-        <div>
-          <p class="eyebrow">Enseignements clés</p>
-          <ul class="edu-list">
-            <li>Gestion de projets data</li>
-            <li>Modélisation et exploitation de données</li>
-            <li>Analyse et traitement de données distribuées</li>
-            <li>Machine learning et prédiction</li>
-            <li>Conception de solutions logicielles</li>
-            <li>Mathématiques</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <div class="wrap" id="formationList"></div>
   </section>
 
   <!-- Centres d'intérêt à la fin -->
@@ -352,16 +212,10 @@
     <div class="wrap">
       <p class="eyebrow reveal">En dehors du travail</p>
       <h2 class="reveal">Centres d'intérêt</h2>
-      <div class="interests reveal">
-        <article class="interest-card">
-          <span>Musique <em>(clarinettiste)</em></span>
-        </article>
-        <article class="interest-card">
-          <span>Théâtre</span>
-        </article>
-        <article class="interest-card">
-          <span>Cours particuliers de mathématiques</span>
-        </article>
+      <div class="interests reveal" id="interetsList">
+        <article class="interest-card"><span>Musique <em>(clarinettiste)</em></span></article>
+        <article class="interest-card"><span>Théâtre</span></article>
+        <article class="interest-card"><span>Cours particuliers de mathématiques</span></article>
       </div>
     </div>
   </section>
@@ -370,6 +224,14 @@
     <span>© 2026 Clara Massé</span>
     <a href="#top">Haut de page</a>
   </footer>
+
+  <!-- Détail d'un projet -->
+  <dialog id="projetDialog">
+    <div class="dialog-inner">
+      <button class="dialog-close" id="closeProjet" type="button" aria-label="Fermer">✕</button>
+      <div id="projetContent"></div>
+    </div>
+  </dialog>
 
   <script src="app.js"></script>
   <script>
