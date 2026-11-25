@@ -2,15 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
-import socket
-
-# Contournement bug DNS uvloop sur Vercel Serverless ([Errno 16] Device or resource busy)
-_orig_getaddrinfo = socket.getaddrinfo
-async def _patched_getaddrinfo(self, host, port, *, family=0, type=0, proto=0, flags=0):
-    return _orig_getaddrinfo(host, port, family, type, proto, flags)
-
-asyncio.AbstractEventLoop.getaddrinfo = _patched_getaddrinfo
 
 from contextlib import asynccontextmanager
 
