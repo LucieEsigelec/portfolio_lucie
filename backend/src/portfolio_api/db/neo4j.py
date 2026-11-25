@@ -2,57 +2,69 @@
 
 from __future__ import annotations
 
-import json
-import socket
-import urllib.request
+import asyncio
+import logging
+from urllib.parse import urlparse
+
 from neo4j import AsyncGraphDatabase, AsyncDriver
 
 from portfolio_api.core.config import get_settings
 
-
-def _resolve_via_doh(host: str) -> str:
-    """Résout un nom de domaine en IPv4 via DNS-over-HTTPS (suivi automatique des CNAME)."""
-    try:
-        socket.inet_aton(host)
-        return host
-    except OSError:
-        pass
-
-    url = f"https://dns.google/resolve?name={host}&type=A"
-    with urllib.request.urlopen(url, timeout=4.0) as resp:
-        payload = json.loads(resp.read().decode("utf-8"))
-
-    for ans in payload.get("Answer", []):
-        if ans.get("type") == 1:  # Enregistrement A (IPv4)
-            return ans["data"]
-
-    raise OSError(f"Aucun enregistrement A trouvé pour {host} (status={payload.get('Status')})")
-
-
-def _sync_resolver(address):
-    host, port = address
-    ip = _resolve_via_doh(host)
-    return [(ip, port)]
-
+logger = logging.getLogger(__name__)
 
 _driver: AsyncDriver | None = None
+_driver_loop: asyncio.AbstractEventLoop | None = None
+
+
+def _direct_uri(uri: str) -> str:
+    """Convertit neo4j+s:// en bolt+s:// (connexion directe, sans table de routage).
+
+    Suffisant pour une instance Aura unique, et évite l'erreur
+    "Unable to retrieve routing information".
+    """
+    if uri.startswith("neo4j+s://"):
+        return "bolt+s://" + uri[len("neo4j+s://"):]
+    if uri.startswith("neo4j+ssc://"):
+        return "bolt+ssc://" + uri[len("neo4j+ssc://"):]
+    if uri.startswith("neo4j://"):
+        return "bolt://" + uri[len("neo4j://"):]
+    return uri
 
 
 def get_neo4j_driver() -> AsyncDriver:
-    """Retourne le driver Neo4j (singleton)."""
-    global _driver
+    """Retourne le driver Neo4j (singleton, recréé si l'event loop a changé)."""
+    global _driver, _driver_loop
+
+    loop = asyncio.get_running_loop()
+
+    # Sur Vercel (serverless), l'event loop peut changer entre deux invocations.
+    # Un driver async lié à l'ancienne loop ne fonctionne plus : on le recrée.
+    if _driver is not None and _driver_loop is not loop:
+        _driver = None
+
     if _driver is None:
         settings = get_settings()
+        uri = _direct_uri(settings.neo4j_uri)
+
+        # On logge uniquement l'hôte (pas de secret) pour pouvoir vérifier
+        # dans les logs Vercel vers quelle instance on se connecte.
+        parsed = urlparse(uri)
+        logger.info("Neo4j: connexion à %s://%s", parsed.scheme, parsed.hostname)
+
         _driver = AsyncGraphDatabase.driver(
-            settings.neo4j_uri,
+            uri,
             auth=(settings.neo4j_user, settings.neo4j_password),
-            resolver=_sync_resolver,
+            connection_timeout=10,
+            max_connection_lifetime=300,
         )
+        _driver_loop = loop
+
     return _driver
 
 
 async def close_neo4j() -> None:
-    global _driver
+    global _driver, _driver_loop
     if _driver is not None:
         await _driver.close()
         _driver = None
+        _driver_loop = None
