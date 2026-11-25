@@ -15,13 +15,7 @@ _driver: AsyncDriver | None = None
 
 
 def _direct_uri(uri: str) -> str:
-    """Convertit neo4j+s:// en bolt+s:// (connexion directe, sans table de routage)."""
-    if uri.startswith("neo4j+s://"):
-        return "bolt+s://" + uri[len("neo4j+s://"):]
-    if uri.startswith("neo4j+ssc://"):
-        return "bolt+ssc://" + uri[len("neo4j+ssc://"):]
-    if uri.startswith("neo4j://"):
-        return "bolt://" + uri[len("neo4j://"):]
+    """Garde l'URI telle quelle (routage Aura normal)."""
     return uri
 
 
