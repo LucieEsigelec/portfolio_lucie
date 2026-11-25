@@ -38,7 +38,7 @@ app.add_middleware(
     "http://127.0.0.1:8080",
     "http://10.185.231.56:8080",
     "http://localhost:5173",
-    "https://portfoliolucie-frontend-psi.vercel.app/projets"
+    "https://portfoliolucie-frontend-psi.vercel.app/"
 ],
     allow_methods=["*"],
     allow_headers=["*"],
