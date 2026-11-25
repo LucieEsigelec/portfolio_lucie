@@ -2,55 +2,36 @@
 
 from __future__ import annotations
 
+import json
 import socket
-import struct
+import urllib.request
 from neo4j import AsyncGraphDatabase, AsyncDriver
 
 from portfolio_api.core.config import get_settings
 
 
-def _resolve_via_dns(host: str) -> str:
-    """Résout un nom de domaine en IPv4 via 8.8.8.8 (contourne getaddrinfo sur Vercel)."""
-    # Si c'est déjà une IPv4, la retourner directement
+def _resolve_via_doh(host: str) -> str:
+    """Résout un nom de domaine en IPv4 via DNS-over-HTTPS (suivi automatique des CNAME)."""
     try:
         socket.inet_aton(host)
         return host
     except OSError:
         pass
 
-    # Construction d'une requête DNS A standard (ID=0x1234, RD=1, 1 question)
-    qname = b"".join(bytes([len(p)]) + p.encode("ascii") for p in host.split(".")) + b"\x00"
-    packet = b"\x12\x34\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00" + qname + b"\x00\x01\x00\x01"
+    url = f"https://dns.google/resolve?name={host}&type=A"
+    with urllib.request.urlopen(url, timeout=4.0) as resp:
+        payload = json.loads(resp.read().decode("utf-8"))
 
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.settimeout(3.0)
-    try:
-        sock.sendto(packet, ("8.8.8.8", 53))
-        data, _ = sock.recvfrom(512)
-    finally:
-        sock.close()
+    for ans in payload.get("Answer", []):
+        if ans.get("type") == 1:  # Enregistrement A (IPv4)
+            return ans["data"]
 
-    # Parcours de la section réponse pour extraire le premier enregistrement A (type 1, len 4)
-    idx = 12 + len(qname) + 4
-    while idx + 12 <= len(data):
-        if data[idx] & 0xC0 == 0xC0:
-            idx += 2
-        else:
-            while idx < len(data) and data[idx] != 0:
-                idx += data[idx] + 1
-            idx += 1
-        rtype, rclass, _ttl, rdlength = struct.unpack("!HHIH", data[idx : idx + 10])
-        idx += 10
-        if rtype == 1 and rclass == 1 and rdlength == 4:
-            return socket.inet_ntoa(data[idx : idx + 4])
-        idx += rdlength
-
-    raise OSError(f"Impossible de résoudre {host} via 8.8.8.8")
+    raise OSError(f"Aucun enregistrement A trouvé pour {host} (status={payload.get('Status')})")
 
 
 def _sync_resolver(address):
     host, port = address
-    ip = _resolve_via_dns(host)
+    ip = _resolve_via_doh(host)
     return [(ip, port)]
 
 
